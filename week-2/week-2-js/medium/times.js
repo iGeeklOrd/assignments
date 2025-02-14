@@ -5,9 +5,22 @@ Try running it for
 2. Sum from 1-100000
 3. Sum from 1-1000000000
 Hint - use Date class exposed in JS
-There is no automated test for this one, this is more for you to understand time goes up as computation goes up
 */
 
 function calculateTime(n) {
-    return 0.01;
+    var startTime = new Date().getTime();
+
+    var sum = 0;
+    for(var i=1; i<=n; i++){
+        sum += i;
+    }
+
+    var endTime = new Date().getTime();
+    var totalTime = ((endTime - startTime)/1000);
+
+    console.log(sum);
+    console.log(totalTime);
+
 }
+
+calculateTime(1000)

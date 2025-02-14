@@ -1,35 +1,38 @@
-function wait1(time) {
-    return new Promise(resolve => setTimeout(resolve, time*1000));
+function wait1(t) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, t * 1000)
+    })
 }
 
-// Placeholder wait function
-function wait2(time) {
-    return new Promise(resolve => setTimeout(resolve, time*1000));
+function wait2(t) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, t * 1000)
+    })
 }
 
-// Placeholder wait function
-function wait3(time) {
-    return new Promise(resolve => setTimeout(resolve, time*1000));
+function wait3(t) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, t * 1000)
+    })
 }
 
 function calculateTime(t1, t2, t3) {
-    let start = new Date();
+    const startTime = Date.now();
 
-    return call(t1, t2, t3)
-        .then(function () {
-            let end = new Date();
-            return end.getTime() - start.getTime();
-        });
-}
+    return wait1(t1).then(() => {
+        console.log("First wait")
+        return wait2(t2).then(()=> {
+            console.log("Second wait")
+            return wait3(t3).then(() => {
+                console.log("Third second")
 
-function call(t1, t2, t3) {
-    return wait1(t1)
-        .then(function () {
-            return wait2(t2);
+                const endTime = Date.now()
+
+                const timeTake = endTime - startTime;
+                return timeTake
+            })
         })
-        .then(function () {
-            return wait3(t3);
-        });
+    })
 }
 
 module.exports = calculateTime;
